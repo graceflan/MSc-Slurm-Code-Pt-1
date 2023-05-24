@@ -35,9 +35,17 @@ then run it
 sbatch *script-name*.sh
 ```
 
-To copy a file in to the server, this one is the names of the DNA sequence files
+To copy a file in to the server, this one is the names of the DNA sequence files. This should just have the unique prefixes of all your documents ex. 
+Sample_1
+Sample_2
+Sample_3
+NOT
+Sample_1.txt
+OR
+Sample
+Sample
 ```
-scp test_name_file.txt DIR/DIR/pwd
+scp *sample_name_file*.txt DIR/DIR/pwd
 ```
 
 For putting the fastqc-slurm script file in the server for slurm
@@ -47,7 +55,7 @@ scp *fastqc-script*.sh DIR/DIR/apps
 
 For running the fastqc-slurm code in the terminal
 ```
-sbatch DIR/DIR/apps/fastqc-slurm.sh
+sbatch DIR/DIR/apps/*fastqc-slurm*.sh
 ```
 
 Use the tab with your computer's directories, the html outcomes into your local hard drive(.) 
@@ -85,11 +93,11 @@ TOPHRED 33
 
 echo $SLURM_ARRAY_TASK_ID
 
-name=$(awk -v lineid=$SLURM_ARRAY_TASK_ID 'NR==lineid{print;exit}' /DIR/DIR/*test_name_file*.txt)
+name=$(awk -v lineid=$SLURM_ARRAY_TASK_ID 'NR==lineid{print;exit}' /DIR/DIR/*sample_name_file*.txt)
 
 echo $name
 
-java -jar /DIR/DIR/apps/conda/conda-meta/trimmomatic-0.39 PE -phred33 /DIR/DIR/*test_name_file*.txt "$name"_R1_001.fastq /DIR/DIR/test_name_file.txt "$name"_R2_001.fastq "$name"_R1_001_P.fastq "$name"R1_001_UP.fastq "$name"_R2_001_P.fastq "$name"_R2_001_UP.fastq ILLUMINACLIP:~/apps/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:1:30:7:2:true MAXINFO:40:0.85 MINLEN:36)
+java -jar /DIR/DIR/apps/conda/conda-meta/trimmomatic-0.39 PE -phred33 /DIR/DIR/*sample_name_file*.txt "$name"_R1_001.fastq /DIR/DIR/*sample_name_file*.txt "$name"_R2_001.fastq "$name"_R1_001_P.fastq "$name"R1_001_UP.fastq "$name"_R2_001_P.fastq "$name"_R2_001_UP.fastq ILLUMINACLIP:~/apps/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:1:30:7:2:true MAXINFO:40:0.85 MINLEN:36)
 ```
 
 To move the script:
@@ -135,7 +143,7 @@ scp DIR/DIR/*.html .
 
 echo $SLURM_ARRAY_TASK_ID
 
-name=$(awk -v lineid=$SLURM_ARRAY_TASK_ID 'NR==lineid{print;exit}' /DIR/DIR/*test_name_file*.txt)
+name=$(awk -v lineid=$SLURM_ARRAY_TASK_ID 'NR==lineid{print;exit}' /DIR/DIR/*sample_name_file*.txt)
 
 echo $name
 
@@ -144,7 +152,7 @@ cd $TMPDIR
 
 source activate hybpiper
 
-hybpiper assemble -r /home/DIR/"$name"_R*_001_P.fastq -t_aa /home/DIR/translated_BaitsSyzygium.fasta --prefix "$name" --timeout_assemble 4000 --timeout_exonerate_contigs 4000 --cpu 8 --run_intronerate
+hybpiper assemble -r /home/DIR/"$name"_R*_001_P.fastq -t_aa /home/DIR/*sample_name_file*.txt --prefix "$name" --timeout_assemble 4000 --timeout_exonerate_contigs 4000 --cpu 8 --run_intronerate
 
 # --cov_cutoff 3
 
@@ -183,17 +191,17 @@ Stats
 source activate hybpiper
 
 
-hybpiper stats -t_aa /home/DIR/translated_BaitsSyzygium.fasta supercontig /home/DIR/test_name_file.txt --stats_filename supercontig-stats.txt --seq_lengths_filename supercontig-lengths.tsv
+hybpiper stats -t_aa /home/DIR/*template.fasta* supercontig /home/DIR/*sample_name_file*.txt --stats_filename *supercontig-stats* --seq_lengths_filename *supercontig-lengths*
 
-hybpiper stats -t_aa /home/DIR/translated_BaitsSyzygium.fasta gene /home/DIR/test_name_file.txt --stats_filename gene-stats.txt --seq_lengths_filename gene-lengths.tsv
+hybpiper stats -t_aa /home/DIR/*template.fasta* gene /home/DIR/*sample_name_file*.txt --stats_filename gene-stats --seq_lengths_filename *gene-lengths*
 
-hybpiper recovery_heatmap supercontig-lengths.tsv
+hybpiper recovery_heatmap *supercontig-lengths*.tsv
 
-hybpiper recovery_heatmap gene-lengths.tsv
+hybpiper recovery_heatmap *gene-lengths*.tsv
 
-hybpiper retrieve_sequences -t_aa /home/DIR/translated_BaitsSyzygium.fasta dna --sample_names /home/DIR/test_name_file.txt --fasta_dir genes
+hybpiper retrieve_sequences -t_aa /home/DIR/*template.fasta* dna --sample_names /home/DIR/*sample_name_file*.txt --fasta_dir genes
 
-hybpiper retrieve_sequences -t_aa /home/DIR/translated_BaitsSyzygium.fasta dna --sample_names /home/DIR/test_name_file.txt --fasta_dir supercontigs
+hybpiper retrieve_sequences -t_aa /home/DIR/*template.fasta* dna --sample_names /home/DIR/*sample_name_file*.txt --fasta_dir supercontigs
 
 conda deactivate
 ```
