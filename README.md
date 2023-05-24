@@ -3,6 +3,7 @@ Code I used for the bioinformatics section of my Masters project. DNA sequencing
 Sections with stars will need to be replaced with your names/files.
 DIR/DIR will need to be replaces with the directory for that file.
 You will need 2 tabs open on Ubuntu, one for your computer's directories and one for the slurm's directories 
+If pasting script in Notepad ++ remember to remove \r
 
 To access slurm, type password when promt
 ```
@@ -54,7 +55,7 @@ Use the tab with your computer's directories, the html outcomes into your local 
 scp DIR/DIR/pwd/*.html .
 ```
 --------------------------------------------------------------------------------------------------------------------------
-#Next, move to Trimmomatic
+# Next, move to Trimmomatic
 
 Downloading Paired-ended Format:
 ```
@@ -68,7 +69,7 @@ MINLEN:36
 TOPHRED 33 
 
 -----------------------
-##Trimmomatic code:
+## Trimmomatic code:
 ```
 #!/bin/bash
 #
@@ -117,7 +118,7 @@ scp DIR/DIR/*.html .
 ```
 
 ----------------------------------------------------------
-Hybpiper
+# Hybpiper
 
 ```
 #!/bin/bash
@@ -163,8 +164,8 @@ sbatch /home/DIR/apps/hybpiper-script.sh
 ```
 
 ----------------------------------------
-#Post-assembly and extraction pipeline 
-##Supercontig
+# Post-assembly and extraction pipeline 
+## Supercontig
 
 Stats
 ```
