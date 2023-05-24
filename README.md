@@ -4,6 +4,10 @@ Sections with stars will need to be replaced with your names/files.
 DIR/DIR will need to be replaces with the directory for that file.
 You will need 2 tabs open on Ubuntu, one for your computer's directories and one for the slurm's directories 
 If pasting script in Notepad ++ remember to remove \r
+Software to download:
+Conda
+Hybpiper (using conda)
+Trimmomatic downloaded later, along with someother softwares
 
 To access slurm, type password when promt
 ```
@@ -173,6 +177,15 @@ sbatch /home/DIR/apps/hybpiper-script.sh
 
 ----------------------------------------
 # Post-assembly and extraction pipeline 
+Software to install using conda:
+Mafft
+CIAlign
+Optrimal
+TAPER
+IQTREE
+raxml-ng
+weighted ASTRAL (or ASTRAL III if you do not figure out ASTRAL-w)
+
 ## Supercontig
 
 Stats
