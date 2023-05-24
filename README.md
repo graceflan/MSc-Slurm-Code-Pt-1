@@ -1,4 +1,4 @@
-# MSc-Code-Slurm
+# MSc-Code-Slurm (Not complete)
 Code I used for the bioinformatics section of my Masters project. DNA sequencing used Angiosperm353. Coding uses Ubuntu, Slurm, Trimmomatic and Hybpiper.
 Sections with stars will need to be replaced with your names/files.
 DIR/DIR will need to be replaces with the directory for that file.
