@@ -3,7 +3,7 @@ Code I used for the bioinformatics section of my Masters project. DNA sequencing
 Sections with stars will need to be replaced with your names/files.
 DIR/DIR will need to be replaces with the directory for that file.
 You will need 2 tabs open on Ubuntu, one for your computer's directories and one for the slurm's directories 
-If pasting script in Notepad ++ remember to remove \r
+If pasting script in Notepad ++ remember to remove \r.
 Software to download:
 Conda
 Hybpiper (using conda)
