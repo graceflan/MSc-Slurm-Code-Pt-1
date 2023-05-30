@@ -1,5 +1,6 @@
-# MSc-Code-Slurm (Not complete)
+# MSc Slurm Code
 Code I used for the bioinformatics section of my Masters project. DNA sequencing used Angiosperm353. Coding uses Ubuntu, Slurm, Trimmomatic and Hybpiper.
+Part 1 runs from the beginning to Supercontig stats.
 Sections with stars will need to be replaced with your names/files.
 DIR/DIR will need to be replaces with the directory for that file.
 You will need 2 tabs open on Ubuntu, one for your computer's directories and one for the slurm's directories 
@@ -177,11 +178,11 @@ sbatch /home/DIR/apps/hybpiper-script.sh
 
 ----------------------------------------
 # Post-assembly and extraction pipeline 
-Software to install using conda:
+Software to install:
 Mafft
 CIAlign
 Optrimal
-TAPER
+Julia
 IQTREE
 raxml-ng
 weighted ASTRAL (or ASTRAL III if you do not figure out ASTRAL-w)
