@@ -102,7 +102,7 @@ name=$(awk -v lineid=$SLURM_ARRAY_TASK_ID 'NR==lineid{print;exit}' /DIR/DIR/*sam
 
 echo $name
 
-java -jar /DIR/DIR/apps/conda/conda-meta/trimmomatic-0.39 PE -phred33 /DIR/DIR/*sample_name_file*.txt "$name"_R1_001.fastq /DIR/DIR/*sample_name_file*.txt "$name"_R2_001.fastq "$name"_R1_001_P.fastq "$name"R1_001_UP.fastq "$name"_R2_001_P.fastq "$name"_R2_001_UP.fastq ILLUMINACLIP:~/apps/Trimmomatic-0.36/adapters/TruSeq3-PE-2.fa:1:30:7:2:true MAXINFO:40:0.85 MINLEN:36)
+java -jar /DIR/apps/Trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 /home/DIR/"$name"_1.fastq /home/DIR/"$name"_2.fastq "$name"_R1_001_P.fastq "$name"_R1_001_UP.fastq "$name"_R2_001_P.fastq "$name"_R2_001_UP.fastq ILLUMINACLIP:~/apps/Trimmomatic-0.39/adapters/TruSeq3-PE-2.fa:1:30:7:2:true MAXINFO:40:0.85 MINLEN:36
 ```
 
 To move the script:
@@ -132,7 +132,11 @@ scp DIR/DIR/*.html .
 
 ----------------------------------------------------------
 # Hybpiper
-
+Load bait file for genes into the trimmed file
+```
+scp **bait file**.txt DIR/DIR/trimmed
+```
+Hybpiper code
 ```
 #!/bin/bash
 #
@@ -157,7 +161,7 @@ cd $TMPDIR
 
 source activate hybpiper
 
-hybpiper assemble -r /home/DIR/"$name"_R*_001_P.fastq -t_aa /home/DIR/*sample_name_file*.txt --prefix "$name" --timeout_assemble 4000 --timeout_exonerate_contigs 4000 --cpu 8 --run_intronerate
+hybpiper assemble -r /home/DIR/"$name"_R*_001_P.fastq -t_aa /home/DIR/*bait-file*.txt --prefix "$name" --timeout_assemble 4000 --timeout_exonerate_contigs 4000 --cpu 8 --run_intronerate
 
 # --cov_cutoff 3
 
